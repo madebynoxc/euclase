@@ -6,7 +6,7 @@ namespace Euclase.EVector3 {
     public static class Vector3Extensions {
 
         public static Vector3 Lerp(this Vector3 v3, Vector3 target, float speed) {
-            return Vector3.Lerp(v3, target, Time.deltaTime * speed);
+            return Vector3.Lerp(v3, target, speed);
         }
 
         public static Vector3 Sum(this IEnumerable<Vector3> source) {
