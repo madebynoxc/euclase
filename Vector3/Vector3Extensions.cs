@@ -25,5 +25,19 @@ namespace Euclase.EVector3 {
                 sum.z / c);
         }
 
+        public static Vector3 Mul(this Vector3 v3, int x = 1, int y = 1, int z = 1) {
+            return new Vector3(
+                v3.x * x,
+                v3.y * y,
+                v3.z * z);
+        }
+
+        public static Vector3 Mul(this Vector3 v3, Vector3 target) {
+            return new Vector3(
+                v3.x * target.x,
+                v3.y * target.y,
+                v3.z * target.z);
+        }
+
     }
 }
