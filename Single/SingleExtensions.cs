@@ -8,17 +8,22 @@ namespace Euclase.ESingle {
         }
 
         public static Single ClampAngle(this Single angle, Single from, Single to) {
-            if(angle < 0f)
-                angle = 360 + angle;
+            angle = angle.GetPositiveAngle();
             if(angle > 180f)
                 return Mathf.Max(angle, 360 + from);
             return Mathf.Min(angle, to);
         }
 
-        private static Single GetAbsoluteAngle(this Single ang) {
+        public static Single GetAbsoluteAngle(this Single ang) {
             if(ang > 180)
                 ang = 360 - ang;
             return ang;
+        }
+
+        public static Single GetPositiveAngle(this Single angle) {
+            if(angle < 0f)
+                angle = 360 + angle;
+            return angle;
         }
     }
 }

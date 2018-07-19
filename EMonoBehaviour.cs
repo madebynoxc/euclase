@@ -14,6 +14,7 @@ namespace Euclase {
         }
 
         private Transform _transform;
+        
 
     }
 
