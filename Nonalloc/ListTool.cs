@@ -27,13 +27,14 @@ namespace Euclase.Nonalloc {
             return this;
         }
 
-        private void CopyToTemp(List<T> list) {
+        private void MoveToTemp(List<T> list) {
             _temp.Clear();
             _temp.AddRange(list);
+            list.Clear();
         }
 
         public ListTool<T> Where(Func<T, bool> predicate) {
-            CopyToTemp(_result);
+            MoveToTemp(_result);
             foreach(T obj in _temp) {
                 if(predicate(obj))
                     _result.Add(obj);
@@ -42,7 +43,7 @@ namespace Euclase.Nonalloc {
         }
 
         public ListTool<T> Except(List<T> second) {
-            CopyToTemp(_result);
+            MoveToTemp(_result);
             foreach(T obj in _temp) {
                 if(second.IndexOf(obj) == -1)
                     _result.Add(obj);
@@ -51,7 +52,7 @@ namespace Euclase.Nonalloc {
         }
 
         public ListTool<T> Intersect(List<T> second) {
-            CopyToTemp(_result);
+            MoveToTemp(_result);
             foreach(T obj in _temp) {
                 if(second.IndexOf(obj) != -1)
                     _result.Add(obj);
