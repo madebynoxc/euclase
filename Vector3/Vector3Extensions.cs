@@ -9,6 +9,10 @@ namespace Euclase.EVector3 {
             return Vector3.Lerp(v3, target, speed);
         }
 
+        public static Vector3 Slerp(this Vector3 v3, Vector3 target, float speed) {
+            return Vector3.Slerp(v3, target, speed);
+        }
+
         public static Vector3 Sum(this IEnumerable<Vector3> source) {
             return new Vector3(
                 source.Sum(s => s.x),

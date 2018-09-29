@@ -34,11 +34,27 @@ namespace Euclase.ETransform {
             return tr.SetLocalPos(tr.localPosition.Lerp(target, speed));
         }
 
+        public static Transform SlerpPos(this Transform tr, Vector3 target, float speed) {
+            return tr.SetPos(tr.position.Slerp(target, speed));
+        }
+
+        public static Transform SlerpLocalPos(this Transform tr, Vector3 target, float speed) {
+            return tr.SetLocalPos(tr.localPosition.Slerp(target, speed));
+        }
+
         public static Transform LerpRot(this Transform tr, Quaternion target, float speed) {
-            return tr.SetRot(tr.rotation.Slerp(target, speed));
+            return tr.SetRot(tr.rotation.Lerp(target, speed));
         }
 
         public static Transform LerpLocalRot(this Transform tr, Quaternion target, float speed) {
+            return tr.SetLocalRot(tr.localRotation.Lerp(target, speed));
+        }
+
+        public static Transform SlerpRot(this Transform tr, Quaternion target, float speed) {
+            return tr.SetRot(tr.rotation.Slerp(target, speed));
+        }
+
+        public static Transform SlerpLocalRot(this Transform tr, Quaternion target, float speed) {
             return tr.SetLocalRot(tr.localRotation.Slerp(target, speed));
         }
 
