@@ -6,35 +6,46 @@ namespace Euclase.Nonalloc {
 
         private List<T> _temp;
         private List<T> _result;
-        private List<T> _rresult;
+        //private List<T> _rresult;
 
         public ListTool() {
             _temp = new List<T>();
-            _rresult = new List<T>();
+            _result = new List<T>();
         }
 
         public ListTool<T> From(List<T> list) {
-            _result = _rresult;
+            //_result = _rresult;
             _result.Clear();
-            _result.AddRange(list);
+            foreach(var l in list)
+                _result.Add(l);
+
             return this;
         }
 
         public ListTool<T> From(List<T> list, ref List<T> result) {
+            if(result == null)
+                result = new List<T>();
+
             _result = result;
             _result.Clear();
-            _result.AddRange(list);
+
+            foreach(var l in list)
+                _result.Add(l);
+
             return this;
         }
 
-        private void MoveToTemp(List<T> list) {
+        private void MoveToTemp(ref List<T> list) {
             _temp.Clear();
-            _temp.AddRange(list);
+
+            foreach(var l in list)
+                _temp.Add(l);
+
             list.Clear();
         }
 
         public ListTool<T> Where(Func<T, bool> predicate) {
-            MoveToTemp(_result);
+            MoveToTemp(ref _result);
             foreach(T obj in _temp) {
                 if(predicate(obj))
                     _result.Add(obj);
@@ -43,7 +54,7 @@ namespace Euclase.Nonalloc {
         }
 
         public ListTool<T> Except(List<T> second) {
-            MoveToTemp(_result);
+            MoveToTemp(ref _result);
             foreach(T obj in _temp) {
                 if(second.IndexOf(obj) == -1)
                     _result.Add(obj);
@@ -52,7 +63,7 @@ namespace Euclase.Nonalloc {
         }
 
         public ListTool<T> Intersect(List<T> second) {
-            MoveToTemp(_result);
+            MoveToTemp(ref _result);
             foreach(T obj in _temp) {
                 if(second.IndexOf(obj) != -1)
                     _result.Add(obj);
@@ -107,7 +118,8 @@ namespace Euclase.Nonalloc {
         }
 
         public void CopyTo(ref List<T> list) {
-            list.AddRange(_result);
+            foreach(var l in _result)
+                list.Add(l);
         }
 
     }
